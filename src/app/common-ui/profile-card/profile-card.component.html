@@ -1,28 +1,22 @@
 @if (profile) {
   <div class="profile-card">
     <div class="avatar-name">
-      <img src="/assets/imgs/av1.png" alt="avatar" class="profile-card__avatar">
+      <img [src]="profile.avatarUrl" alt="avatar" class="profile-card__avatar">
       <div class="profile-card__name">
         <strong class="h6">{{ profile.firstName }}  {{ profile.lastName}}</strong>
         <span class="subtitle">{{ profile.username }}</span>
       </div>
     </div>
     <div class="profile-card__description">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      {{ profile.description }}
     </div>
     <div class="profile-card__tags">
-      <div class="skill-tag">Angular</div>
-      <div class="skill-tag">HTML</div>
-      <div class="skill-tag">CSS</div>
-      <div class="skill-tag">REST</div>
-      <div class="skill-tag">TEKRATHEBEST</div>
-      <div class="skill-tag">TYPESCRIPT</div>
+      @for(skill of profile.stack; track skill) {
+          <div class="skill-tag">{{ skill }}</div>
+      }
     </div>
     <div class="profile-card__action-btns">
       <button class="btn">Follow</button>
     </div>
   </div>
-} @else{
-  Немає ничого
 }
-

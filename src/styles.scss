@@ -6,6 +6,14 @@
   --primary-color: #AE7AFF;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
 
 body {
   font-family: "JetBrains Mono", sans-serif;
@@ -14,14 +22,14 @@ body {
 }
 
 .skill-tag {
-  padding: 4px 8px;
-  border-radius: 4px;
+  border-radius:1px 4px;
   border: 1px solid var(--white-color);
   display: inline;
   font-size: 12px;
   font-weight: 700;
   line-height: 24px;
-  margin-right: 4px;
+  height: 24px;
+  padding: 0 8px;
 }
 
 .btn {
@@ -32,6 +40,7 @@ body {
   font-weight: 700;
   font-size: 14px;
   line-height: 24px;
+  width: 350px;
 }
 
 .h6 {
