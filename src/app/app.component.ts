@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { ProfileCardComponent } from './common-ui/profile-card/profile-card.component';
 import { ProfileService } from './data/services/profile.service';
 import { CommonModule } from '@angular/common'; // імпорт жсон
-
+import { Profile } from './data/interfaces/profile.interface';
 
 @Component({                  //Декоратор тому що так потрібно
   selector: 'app-root',
@@ -16,11 +16,11 @@ import { CommonModule } from '@angular/common'; // імпорт жсон
 })
 export class AppComponent {
   profileService: ProfileService = inject(ProfileService)
-  profiles: any = []
+  profiles: Profile[] = []
 
   constructor() {
     this.profileService.getTestAccounts()
-      .subscribe((val: any) => {
+      .subscribe((val: Profile[]) => {
         this.profiles = val
       })
   }

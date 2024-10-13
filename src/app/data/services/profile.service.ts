@@ -1,16 +1,15 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Profile } from '../interfaces/profile.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProfileService {
   http: HttpClient = inject(HttpClient)
-  base_api_url: string = 'https://icherniakov.ru/yt-course/'
-
   constructor() { }
 
   getTestAccounts() {
-    return this.http.get('${this.base_api_url}account/test_accounts')
+    return this.http.get<Profile[]>('https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/users/some_user_card')
   }
 }
