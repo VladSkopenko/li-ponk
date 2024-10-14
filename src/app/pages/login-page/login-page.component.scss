@@ -1,0 +1,17 @@
+:host {
+  display: grid;
+  grid-template-columns:  1fr 1fr;
+  height: 100dvh;
+  align-items: center;
+  margin: 0 10%;
+}
+
+
+.circle-image {
+  width: 750px;
+  height: 750px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: transparent;
+  display: block;
+}

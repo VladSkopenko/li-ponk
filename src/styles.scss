@@ -19,6 +19,7 @@ body {
   font-family: "JetBrains Mono", sans-serif;
   background: var(--dark-color);
   color: var(--white-color);
+  background-image: url(/assets/imgs/background.jpg)
 }
 
 .skill-tag {
@@ -43,6 +44,14 @@ body {
   width: 350px;
 }
 
+
+.h1 {
+  font-size: 48px;
+  line-height: 56px;
+  font-weight: 800;
+
+}
+
 .h6 {
   font-size: 18px;
   line-height: 24px;
@@ -54,3 +63,20 @@ body {
   line-height: 20px;
 }
 
+.lp-control-label {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.lp-input {
+  display: block;
+  border: 1px solif var(--white-color);
+  border-radius: 4px;
+  padding: 12px 20px;
+  background: var(--dark-color);
+  font-weight: 400;
+  font-size:14px;
+  line-height: 21px;
+  font-family: "JetBrains Mono", sans-serif;
+}
