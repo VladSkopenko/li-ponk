@@ -1,15 +1,22 @@
-<form action="" class="login-form">
+<form class="login-form"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+
   <h1 class="h1 mb60">Login</h1>
-  Username
+
   <label class="lp-control-label mb16">
-    <input class="lp-input"  type="text" placeholder="Enter username">
-  </label>
-  Password
-  <label class="lp-control-label mb32">
-    <input class="lp-input" type="text" placeholder="Enter password">
+    Username
+    <input formControlName="username"
+      class="lp-input"  type="text" placeholder="Enter username">
   </label>
 
-  <button class="btn"> Enter </button>
+  <label class="lp-control-label mb32">
+    Password
+    <input formControlName="password"
+      class="lp-input" type="text" placeholder="Enter password">
+  </label>
+
+  <button class="btn btn-shadow" type="submit"> Enter </button>
 
 
 </form>

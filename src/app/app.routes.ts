@@ -11,7 +11,5 @@ export const routes: Routes = [
     {path: '', component: SearchPageComponent },
     {path: 'profile', component: ProfilePageComponent},
   ]},
-//   {path: '', component: SearchPageComponent },
-//   {path: 'profile', component: ProfilePageComponent},
   {path: 'login', component: LoginPageComponent},
 ];
