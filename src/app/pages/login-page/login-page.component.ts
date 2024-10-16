@@ -19,14 +19,6 @@ export class LoginPageComponent {
     password: new FormControl(null, Validators.required),
   })
 
-  constructor() {
-    from([1, 2, 3, 4, 5, 6, 7, 8, 9])
-      .subscribe(val => {
-        console.log(val);
-      });
-  }
-
-
   onSubmit() {
     if (this.form.valid) {
       //console.log(this.form.value)
