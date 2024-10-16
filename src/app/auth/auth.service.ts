@@ -1,6 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
+import { tap } from 'rxjs';
+import { TokenResponse } from './auth.interface';
 
 
 @Injectable({
@@ -14,7 +16,7 @@ export class AuthService {
   refresh_token: string | null = null
 
   get isAuth() {
-    return !this.token
+    return !!this.token
   }
 
 
@@ -24,13 +26,13 @@ export class AuthService {
     fd.append('username', payload.username)
     fd.append('password', payload.password)
 
-    return this.http.post(
+    return this.http.post<TokenResponse>(
       this.url,
       fd
       ).pipe(
           tap(val => {
             this.token = val.access_token
             this.refresh_token = val.refresh_token
-          });
+          }))
   }
 }

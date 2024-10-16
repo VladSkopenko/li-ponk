@@ -1,5 +1,4 @@
 export interface TokenResponse {
   access_token: string;
-  refresh_
-
+  refresh_token: string;
 }
