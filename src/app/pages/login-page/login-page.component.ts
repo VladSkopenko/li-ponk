@@ -4,6 +4,8 @@ import { AuthService } from '../../auth/auth.service';
 import { inject, Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { from } from 'rxjs';
+import {Router } from '@angular/router';
+import { TokenResponse } from '../../auth/auth.interface';
 
 @Component({
   selector: 'app-login-page',
@@ -14,6 +16,8 @@ import { from } from 'rxjs';
 })
 export class LoginPageComponent {
   authService = inject(AuthService)
+  router: Router = inject(Router)
+
   form: FormGroup<{username: FormControl, password:FormControl}> = new FormGroup({
     username: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
@@ -23,14 +27,11 @@ export class LoginPageComponent {
     if (this.form.valid) {
       //console.log(this.form.value)
       //@ts-ignore
-      this.authService.login(this.form.value).subscribe({
-      next: (response) => {
-        console.log('Response from server:', response);
-      },
-      error: (error) => {
-        console.error('Error from server:', error);
-      }
-    });
-  }
+      this.authService.login(this.form.value)
+        .subscribe((res: TokenResponse) => {
+          this.router.navigate([''])
+          console.log(res)
+        })
+    }
   }
 }
