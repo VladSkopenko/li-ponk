@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpParams } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { TokenResponse } from './auth.interface';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -11,11 +12,16 @@ import { TokenResponse } from './auth.interface';
 export class AuthService {
   http: HttpClient = inject(HttpClient);
   url: string = 'https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/auth/login'
+  cookieService: CookieService = inject(CookieService);
+
 
   token: string | null = null
-  refresh_token: string | null = null
+  refreshToken: string | null = null
 
   get isAuth() {
+    if (!this.token) {
+      this.token = this.cookieService.get('token')
+    }
     return !!this.token
   }
 
@@ -32,7 +38,10 @@ export class AuthService {
       ).pipe(
           tap(val => {
             this.token = val.access_token
-            this.refresh_token = val.refresh_token
+            this.refreshToken = val.refresh_token
+
+            this.cookieService.set('token', this.token)
+            this.cookieService.set('refreshToken', this.refreshToken)
           }))
   }
 }

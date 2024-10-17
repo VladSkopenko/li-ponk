@@ -16,6 +16,7 @@ import { TokenResponse } from '../../auth/auth.interface';
 })
 export class LoginPageComponent {
   authService = inject(AuthService)
+
   router: Router = inject(Router)
 
   form: FormGroup<{username: FormControl, password:FormControl}> = new FormGroup({
