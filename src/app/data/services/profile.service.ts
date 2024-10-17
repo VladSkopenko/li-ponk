@@ -12,4 +12,8 @@ export class ProfileService {
   getTestAccounts() {
     return this.http.get<Profile[]>('https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/users/some_user_card')
   }
+
+  getMe() {
+    return this.http.get<Profile>('https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/users/me')
+  }
 }

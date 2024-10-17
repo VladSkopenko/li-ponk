@@ -4,44 +4,68 @@ import { HttpParams } from '@angular/common/http';
 import { tap } from 'rxjs';
 import { TokenResponse } from './auth.interface';
 import { CookieService } from 'ngx-cookie-service';
-
+import { Router } from '@angular/router';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   http: HttpClient = inject(HttpClient);
-  url: string = 'https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/auth/login'
+  router: Router = inject(Router);
+  url: string = 'https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/auth/login';
+  refresh_url = 'https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/auth/refresh_token';
   cookieService: CookieService = inject(CookieService);
 
-
-  token: string | null = null
-  refreshToken: string | null = null
+  token: string | null = null;
+  refreshToken: string | null = null;
 
   get isAuth() {
     if (!this.token) {
-      this.token = this.cookieService.get('token')
+      this.token = this.cookieService.get('token');
+      this.refreshToken = this.cookieService.get('refreshToken');
     }
-    return !!this.token
+    return !!this.token;
   }
 
-
   login(payload: { username: string; password: string }) {
-    const fd: FormData = new FormData()
-
-    fd.append('username', payload.username)
-    fd.append('password', payload.password)
+    const fd: FormData = new FormData();
+    fd.append('username', payload.username);
+    fd.append('password', payload.password);
 
     return this.http.post<TokenResponse>(
       this.url,
       fd
-      ).pipe(
-          tap(val => {
-            this.token = val.access_token
-            this.refreshToken = val.refresh_token
+    ).pipe(
+      tap((val: TokenResponse) => this.saveTokens(val))
+    );
+  }
 
-            this.cookieService.set('token', this.token)
-            this.cookieService.set('refreshToken', this.refreshToken)
-          }))
+  refreshAuthToken(): Observable<TokenResponse> {
+    return this.http.post<TokenResponse>(
+      this.refresh_url, {
+        refresh_token: this.refreshToken,
+      }
+    ).pipe(
+      tap((val: TokenResponse) => this.saveTokens(val)),
+      catchError(err => {
+        this.logout();
+        return throwError(err)
+      })
+    );
+  }
+
+  logout() {
+    this.cookieService.deleteAll();
+    this.token = null;
+    this.refreshToken = null;
+    this.router.navigate(['/login']);
+  }
+
+  saveTokens(res: TokenResponse) {
+    this.token = res.access_token;
+    this.refreshToken = res.refresh_token;
+    this.cookieService.set('token', this.token);
+    this.cookieService.set('refreshToken', this.refreshToken);
   }
 }
