@@ -6,6 +6,7 @@ import { Validators } from '@angular/forms';
 import { from } from 'rxjs';
 import {Router } from '@angular/router';
 import { TokenResponse } from '../../auth/auth.interface';
+import { signal, WritableSignal } from '@angular/core';
 
 @Component({
   selector: 'app-login-page',
@@ -16,8 +17,10 @@ import { TokenResponse } from '../../auth/auth.interface';
 })
 export class LoginPageComponent {
   authService = inject(AuthService)
-
   router: Router = inject(Router)
+
+
+  isPasswordVisible: WritableSignal<boolean> = signal<boolean>(false)
 
   form: FormGroup<{username: FormControl, password:FormControl}> = new FormGroup({
     username: new FormControl(null, Validators.required),
