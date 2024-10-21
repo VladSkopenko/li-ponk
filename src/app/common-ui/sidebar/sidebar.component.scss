@@ -38,11 +38,12 @@
 
   &:hover,
   &:focus-visible {
-    background: var(--dark-hover-color);
+    background: #2f4f4f;
     color: var(--primary-color);
-  }
 }
 
+
+}
 .main-menu-icon {
   width: 20px;
   height: auto;
