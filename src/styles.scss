@@ -22,7 +22,8 @@ body {
   font-family: "JetBrains Mono", sans-serif;
   background: var(--dark-color);
   color: var(--white-color);
-  background-image: url(/assets/imgs/background.jfif);
+  //background-image: url(/assets/imgs/images.png);
+  background-color: #212121;
   background-size: cover;
 }
 
@@ -83,6 +84,21 @@ body {
   font-size:  14px;
   line-height: 20px;
 }
+
+.medium-text {
+  font-family: "JetBrains Mono", sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.regular {
+ font-size: 14px;
+ font-style: normal;
+ font-weight: 500;
+ line-height: 20px;
+}
+
 
 .lp-control-label {
   font-weight: 700;

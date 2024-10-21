@@ -1,16 +1,32 @@
-import { Component, NgModule} from '@angular/core';
+import { Component, NgModule, inject} from '@angular/core';
 import { SvgIconComponent } from '../svg-icon/svg-icon.component';
 import { CommonModule } from '@angular/common';
+import { firstValueFrom } from 'rxjs';
+import { ProfileService } from '../../data/services/profile.service';
+import {ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
+import {RouterLink } from '@angular/router';
+import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
+import { WritableSignal, signal } from '@angular/core';
+import { Profile } from '../../data/interfaces/profile.interface';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, SvgIconComponent],
+  imports: [
+   SubscriberCardComponent,
+   CommonModule,
+   SvgIconComponent,
+   RouterLink,
+   ImgUrlPipe],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })
 
 export class SidebarComponent {
+ profileService: ProfileService = inject(ProfileService)
+ //me = this.profileService.me ???
+
+ arrow: string = 'arrow';
  menuItems: { label: string; icon: string; link: string }[] = [
    {
      label: "My profile",
