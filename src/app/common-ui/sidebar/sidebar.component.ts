@@ -9,7 +9,7 @@ import { SubscriberCardComponent } from './subscriber-card/subscriber-card.compo
 import { WritableSignal, signal } from '@angular/core';
 import { Profile } from '../../data/interfaces/profile.interface';
 import { Pageble } from '../../data/interfaces/pageble.interface'
-import { Observable, tap } from 'rxjs';
+import { Observable, tap,  } from 'rxjs';
 
 
 @Component({
@@ -28,7 +28,7 @@ import { Observable, tap } from 'rxjs';
 export class SidebarComponent {
  profileService: ProfileService = inject(ProfileService)
 
- subscribers$: Observable<Pageble<Profile>> = this.profileService.getSubscribersShortList()
+ subscribers$ = this.profileService.getSubscribersShortList()
 
  me = this.profileService.me
 

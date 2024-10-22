@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Profile } from '../interfaces/profile.interface';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, map } from 'rxjs';
 import { signal, WritableSignal } from '@angular/core';
 import { Pageble } from '../interfaces/pageble.interface'
 
@@ -29,8 +29,11 @@ export class ProfileService {
 
   }
 
-  getSubscribersShortList(): Observable<Pageble<Profile>> {
-    return this.http.get<Pageble<Profile>>("addroot")// Треба зробити повернення пидписоты
+  getSubscribersShortList() {
+    return this.http.get<Pageble<Profile>>("https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/users/fake_followers")
+      .pipe(
+        map((res:Pageble<Profile>) => res.items.slice(0, 3))
+        )
   }
 
   pathProfile(profile: Partial<Profile>): Observable<Profile> {
