@@ -70,7 +70,7 @@
 
 .sidebar__footer {
   position: absolute;
-  width: 100%;
+  width: calc(100% - 20px);
   bottom: 0;
   left: 0;
   background: var(--light-color);
