@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Profile } from '../interfaces/profile.interface';
 import { Observable, tap, map } from 'rxjs';
 import { signal, WritableSignal } from '@angular/core';
 import { Pageble } from '../interfaces/pageble.interface'
+import { AuthService } from '../../auth/auth.service';
 
 
 @Injectable({
@@ -11,6 +12,7 @@ import { Pageble } from '../interfaces/pageble.interface'
 })
 export class ProfileService {
   http: HttpClient = inject(HttpClient)
+  authservice = inject(AuthService)
   me: WritableSignal<Profile | null> = signal<Profile | null>(null);
 
   getTestAccounts() {
@@ -18,7 +20,12 @@ export class ProfileService {
   }
 
   getMe(): Observable<Profile> {
-    return this.http.get<Profile>('https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/users/me')
+    const token = this.authservice.token;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    console.log(token)
+    return this.http.get<Profile>('https://photo-bank-by-drujba-drujba-06de47a4.koyeb.app/api/users/me',{ headers })
       .pipe(
         tap((res: Profile) => this.me.set(res))
       );

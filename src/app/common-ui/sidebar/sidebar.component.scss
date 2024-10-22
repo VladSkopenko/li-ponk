@@ -1,8 +1,9 @@
 :host {
   display:block;
   padding: 20px 12px;
-  background-color: #171717;
+  background-color: black;
   height: 100vh;
+  position: relative;
 }
 
 .small_logo {
@@ -42,10 +43,10 @@
   &:focus-visible {
     background: #2f4f4f;
     color: var(--primary-color);
+  }
 }
 
 
-}
 .main-menu-icon {
     width: 16px;
     height: 16px;
@@ -65,4 +66,42 @@
 .to-subscribers-icon {
   width: 18px;
   height: 18px;
+}
+
+.sidebar__footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  background: var(--light-color);
+  border-radius: 2px;
+  padding: 4px 16px;
+  display: grid;
+  grid-template-columns: 32px 1fr 16px;
+  grid-gap: 12px;
+  align-items: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-container {
+  grid-column: 1 / 2;
+}
+
+.username-container {
+  grid-column: 2 / 3;
+}
+
+.settings-container {
+  grid-column: 3 / 4;
+}
+
+.username-text {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.avatar_side_bar_from_me {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }

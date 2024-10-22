@@ -33,6 +33,8 @@ export class SidebarComponent {
  me = this.profileService.me
 
  arrow: string = 'arrow';
+ settings_picture: string = 'settings_picture';
+
  menuItems: { label: string; icon: string; link: string }[] = [
    {
      label: "My profile",
@@ -50,4 +52,10 @@ export class SidebarComponent {
      link: 'search'
    },
  ]
+
+ ngOnInit() {
+   firstValueFrom(this.profileService.getMe())
+ }
+
+
 }

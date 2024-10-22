@@ -30,3 +30,23 @@
     All subscribers</a>
   <svg [icon]="arrow" class="to-subscribers-icon"></svg>
 </div>
+
+<footer class="sidebar__footer">
+  @if (me(); as me) {
+    <div class="avatar-container">
+      @if (me.avatarUrl) {
+        <img [src]="me.avatarUrl" alt="" class="avatar_side_bar_from_me">
+      } @else {
+        <img src="/assets/imgs/li-ponk.png" alt="" class="avatar_side_bar_from_me">
+      }
+    </div>
+    <div class="username-container">
+      <div class="medium-text username-text">{{ me.username }}</div>
+    </div>
+    <div class="settings-container">
+      <a [routerLink]="['settings']" class="settings-btn">
+        <svg [icon]="settings_picture" class="to-subscribers-icon"></svg>
+      </a>
+    </div>
+  }
+</footer>

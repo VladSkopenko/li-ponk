@@ -19,11 +19,12 @@
 
 
 body {
-  font-family: "JetBrains Mono", sans-serif;
+  height: 100bvh;
+  font-family: "JetBrains Mono" sans-serif;
   background: var(--dark-color);
   color: var(--white-color);
   //background-image: url(/assets/imgs/images.png);
-  background-color: #212121;
+  background-color: dark;
   background-size: cover;
 }
 
