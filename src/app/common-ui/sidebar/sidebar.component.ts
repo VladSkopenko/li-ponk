@@ -8,6 +8,9 @@ import {RouterLink } from '@angular/router';
 import { SubscriberCardComponent } from './subscriber-card/subscriber-card.component';
 import { WritableSignal, signal } from '@angular/core';
 import { Profile } from '../../data/interfaces/profile.interface';
+import { Pageble } from '../../data/interfaces/pageble.interface'
+import { Observable, tap } from 'rxjs';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -24,7 +27,10 @@ import { Profile } from '../../data/interfaces/profile.interface';
 
 export class SidebarComponent {
  profileService: ProfileService = inject(ProfileService)
- //me = this.profileService.me ???
+
+ subscribers$: Observable<Pageble<Profile>> = this.profileService.getSubscribersShortList()
+
+ me = this.profileService.me
 
  arrow: string = 'arrow';
  menuItems: { label: string; icon: string; link: string }[] = [
