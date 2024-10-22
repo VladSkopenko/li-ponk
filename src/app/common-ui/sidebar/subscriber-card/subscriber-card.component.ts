@@ -10,4 +10,16 @@ import { Profile } from '../../../data/interfaces/profile.interface';
 })
 export class SubscriberCardComponent {
   @Input() profile!: Profile
+
+  defaultAvatarUrl = '/assets/imgs/li-ponk.jfif';
+
+  avatarUrl: string = '';
+
+  ngOnInit() {
+    this.avatarUrl = this.profile.avatarUrl || this.defaultAvatarUrl;
+  }
+
+  onError() {
+    this.avatarUrl = this.defaultAvatarUrl;
+  }
 }

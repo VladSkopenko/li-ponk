@@ -35,9 +35,11 @@
   @if (me(); as me) {
     <div class="avatar-container">
       @if (me.avatarUrl) {
-        <img [src]="me.avatarUrl" alt="" class="avatar_side_bar_from_me">
+        <img [src]="me.avatarUrl"
+             (error)="onError()"
+             alt="" class="avatar_side_bar_from_me">
       } @else {
-        <img src="/assets/imgs/li-ponk.png" alt="" class="avatar_side_bar_from_me">
+        <img src="/assets/imgs/li-ponk.jfif" alt="" class="avatar_side_bar_from_me">
       }
     </div>
     <div class="username-container">

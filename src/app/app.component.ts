@@ -2,17 +2,18 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ProfileCardComponent } from './common-ui/profile-card/profile-card.component';
 import { ProfileService } from './data/services/profile.service';
-import { CommonModule } from '@angular/common'; // імпорт жсон
+import { CommonModule } from '@angular/common';
 import { Profile } from './data/interfaces/profile.interface';
 
-@Component({                  //Декоратор тому що так потрібно
+
+@Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ProfileCardComponent, CommonModule],  // Тут залежності
+  imports: [RouterOutlet, ProfileCardComponent, CommonModule],
 
 
-  templateUrl: './app.component.html',  // Посилання на хтмл
-  styleUrl: './app.component.scss'     // Посилання на стиль
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   profileService: ProfileService = inject(ProfileService)

@@ -57,5 +57,11 @@ export class SidebarComponent {
    firstValueFrom(this.profileService.getMe())
  }
 
+ onError() {
+  const currentProfile = this.me();
+  if (currentProfile?.avatarUrl) {
+    currentProfile.avatarUrl = '/assets/imgs/li-ponk.jfif';
+  }
+}
 
 }

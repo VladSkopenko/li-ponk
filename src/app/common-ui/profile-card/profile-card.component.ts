@@ -11,4 +11,9 @@ import { Profile } from '../../data/interfaces/profile.interface';
 })
 export class ProfileCardComponent {
   @Input() profile!: Profile;
+
+  onError() {
+    this.profile.avatarUrl = '/assets/imgs/li-ponk.jfif';
+  }
+
 }

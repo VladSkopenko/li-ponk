@@ -1,6 +1,7 @@
 <img
   class="subscriber-avatar"
-  [src]="profile.avatarUrl"
+  [src]="avatarUrl"
   [alt]="profile.lastName"
+  (error)="onError()"
 >
 <strong class="subtitle">{{ profile.firstName }} {{profile.lastName}} </strong>
